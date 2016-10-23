@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #menu {
+            width: 200px;
+        }
+
+        #menu h3 {
+            height: 40px;
+            background-color: #000000;
+            color: pink;
+            line-height: 40px;
+            display:block;
+
+        }
+
+        #menu .sub-menu {
+            border: 1px dotted blue;
+            height: 80px;
+            display: none;
+            background-color: pink;
+            line-height:25px;
+        }
+
+    </style>
+</head>
+<body>
+<ul id="menu">
+    <li class="main-menu">
+        <h3 onselectstart="return false">我是第一</h3>
+        <ul class="sub-menu">
+            <li><a href="#">性别</a></li>
+            <li><a href="#">姓名</a></li>
+            <li><a href="#">年龄</a></li>
+        </ul>
+    </li>
+    <li class="main-menu">
+        <h3 onselectstart="return false">我是第二</h3>
+        <ul class="sub-menu">
+            <li><a href="#">性别</a></li>
+            <li><a href="#">姓名</a></li>
+            <li><a href="#">年龄</a></li>
+        </ul>
+    </li>
+</ul>
+<script>
+    var oMenu=document.getElementById('menu');
+    var ali=oMenu.getElementsByTagName('li');
+    for(var i=0; i<ali.length; i++){
+        if(ali[i].className="main-menu") {
+            ali[i].index = i;
+            ali[i].bFlag = false;
+            ali[i].onclick=function(){
+                if(this.bFlag) {
+                    this.getElementsByTagName('ul')[0].style.
+                            display = "none";
+                } else{
+                    this.getElementsByTagName('ul')[0].style.
+                            display="block";
+                }
+                this.bFlag=!this.bFlag;
+            }
+        };
+    }
+</script>
+
+
+
+</body>
+</html>

@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <button id="btn">点我</button>
+    <div id="div1">div1</div>
+    <ul>
+        <li>11</li>
+        <li>22</li>
+        <li>33</li>
+        <li>44</li>
+    </ul>
+    <script>
+        var btn = document.getElementById('btn');
+        btn.onclick=function(){
+            var div1=document.getElementById('div1');
+                div1.style.background="#ff0000";
+                div1.style.width="200px"
+                div1.style.height="200px"
+        }
+
+        var li=document.getElementsByTagName('li')
+        for(var i=0;i<li.length;i++ )
+            li[i].onclick=function(){
+                console.log(i);
+                alert(this.innerHTML);
+                li.style.background="#00ff00";
+
+        }
+    </script>
+</body>
+</html>
