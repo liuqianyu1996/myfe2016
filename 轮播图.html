@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+        #containter{
+            width: 680px;
+            height: 470px;
+            margin: 50px auto;
+            position: relative;
+        }
+        #nav{
+            position: absolute;
+            right: 20px;
+            bottom: 10px;
+        }
+        #nav li ,.arrows span{
+            width: 20px;
+            height: 20px;
+            background-color: #000000;
+            color: #ffffff;
+            float: left;
+            margin-right: 10px;
+            text-align: center;
+            line-height: 20px;
+        }
+        #nav .selected{
+            background-color: #ff9135;
+        }
+        .arrows{
+            position:absolute;
+            left: 20px;
+            bottom: 10px;
+        }
+        #content  img{
+            width: 680px;
+            height: 470px;
+        }
+        #content a {
+            display: none;
+        }
+        #content a.selected{
+            display: block;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="containter">
+        <ul id="nav">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div class="arrows">
+            <span>&lt;</span>
+            <span>&gt;</span>
+        </div>
+
+
+        <div id="content">
+            <a href="#" class="selected"><img src="img/1.jbg.jpg" alt=""/></a>
+            <a href="#"><img src="img/2.jbg.jpg" alt=""/></a>
+            <a href="#"><img src="img/3.jbg.jpg" alt=""/></a>
+            <a href="#"><img src="img/4.jbg.jpg" alt=""/></a>
+        </div>
+    </div>
+
+</body>
+</html>
