@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #menu {
+            width: 200px;
+        }
+
+        #menu h3 {
+            height: 40px;
+            background-color: #000000;
+            color: pink;
+            line-height: 40px;
+            display:block;
+            cursor:pointer;
+        }
+
+        #menu .sub-menu {
+            border: 1px dotted blue;
+            height: 80px;
+            display: none;
+            background-color: pink;
+            line-height:25px;
+        }
+
+    </style>
+
+
+</head>
+<body>
+    <ul id="menu">
+        <li class="main-menu">
+            <h3 onselectstart="return false">刘乾瑜</h3>
+            <ul class="sub-menu">
+                <li><a href="#">可爱</a></li>
+                <li><a href="#">温柔</a></li>
+                <li><a href="#">善良</a></li>
+            </ul>
+        </li>
+        <li class="main-menu">
+            <h3 onselectstart="return false">韩硕</h3>
+            <ul class="sub-menu">
+                <li><a href="#">爱睡懒觉</a></li>
+                <li><a href="#">讨人厌</a></li>
+                <li><a href="#">凶</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var oMenu = document.getElementById('menu');
+        var aH3 = oMenu.getElementsByTagName('h3');
+        var aSubMenu = oMenu.getElementsByTagName('ul');
+        for(var i = 0; i<aH3.length; i++){
+            aH3[i].bFlag=false;
+            aH3[i].index=i;
+            aH3[i].onclick=function(){
+                if(this.bFlag){
+                    aSubMenu[this.index].style.display="none";
+                }else{
+                    aSubMenu[this.index].style.display="block";
+                }
+                this.bFlag = !this.bFlag;
+            }
+        }
+    </script>
+
+</body>
+</html>
