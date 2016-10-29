@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        #menu .main-menu h3{
+            background-color: #ffcdeb;
+            width: 200px;
+            height: 50px;
+            line-height: 50px;
+            cursor: pointer;
+        }
+        #menu .main-menu .sub-menu{
+            width: 200px;
+            height: 80px;
+            background-color: #d4ffea;
+            line-height: 25px;
+            border: 1px dotted #cccccc;
+            display: none;
+
+        }
+    </style>
+</head>
+<body>
+    <ul id="menu">
+        <li class="main-menu">
+            <h3>刘乾瑜</h3>
+            <ul class="sub-menu">
+                <li><a href="#">可爱</a></li>
+                <li><a href="#">温柔</a></li>
+                <li><a href="#">善良</a></li>
+            </ul>
+        </li>
+        <li class="main-menu">
+            <h3>韩硕</h3>
+            <ul class="sub-menu">
+                <li><a href="#">爱睡懒觉</a></li>
+                <li><a href="#">讨人厌</a></li>
+                <li><a href="#">凶</a></li>
+            </ul>
+        </li>
+    </ul>
+    <script>
+        var oMenu=document.getElementById('menu');
+        var aMainMenu=document.getElementsByTagName('li');
+        for(var i = 0; i<aMainMenu.length; i++) {
+            if (aMainMenu[i].className = "main-menu") {
+                aMainMenu[i].bFlag = false;
+                aMainMenu[i].onclick = function () {
+                    if (this.bFlag) {
+                        this.getElementsByTagName('ul')[0]
+                                .style.display = "none";
+                    } else {
+                        this.getElementsByTagName('ul')[0]
+                                .style.display = "block";
+                    }
+                    this.bFlag = !this.bFlag;
+
+                }
+
+            };
+        }
+
+    </script>
+</body>
+</html>
