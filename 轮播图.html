@@ -16,6 +16,9 @@
         a {
             text-decoration: none;
         }
+        img{
+            border: 0;
+        }
         #containter{
             width: 680px;
             height: 470px;
@@ -27,7 +30,7 @@
             right: 20px;
             bottom: 10px;
         }
-        #nav li ,.arrows span{
+        #nav li ,#arrows span{
             width: 20px;
             height: 20px;
             background-color: #000000;
@@ -36,14 +39,16 @@
             margin-right: 10px;
             text-align: center;
             line-height: 20px;
+            cursor: pointer;
         }
         #nav .selected{
             background-color: #ff9135;
         }
-        .arrows{
+        #arrows{
             position:absolute;
             left: 20px;
             bottom: 10px;
+
         }
         #content  img{
             width: 680px;
@@ -66,12 +71,10 @@
             <li>3</li>
             <li>4</li>
         </ul>
-        <div class="arrows">
-            <span>&lt;</span>
-            <span>&gt;</span>
+        <div id="arrows">
+            <span id="prev">&lt;</span>
+            <span id="next">&gt;</span>
         </div>
-
-
         <div id="content">
             <a href="#" class="selected"><img src="img/1.jbg.jpg" alt=""/></a>
             <a href="#"><img src="img/2.jbg.jpg" alt=""/></a>
@@ -79,6 +82,61 @@
             <a href="#"><img src="img/4.jbg.jpg" alt=""/></a>
         </div>
     </div>
+    <script>
+        var oContainter = document.getElementById ('containter');
+        var oNav=document.getElementById('nav');
+        var aLi=oNav.getElementsByTagName('li');
+        var oContent=document.getElementById('content');
+        var aA= oContent.getElementsByTagName('a');
+        var oPrev=document.getElementById('prev');
+        var oNext=document.getElementById('next');
+        var iNow = 0;
+        for( var i = 0; i< aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover= function(){
+                iNow = this.index;
+                changeimg(this.index);
+            }
+        }
+            oPrev.onclick = function(){
+                iNow --;
+                if( iNow ==-1){
+                    iNow = aLi.length-1;
+                }
+                changeimg (iNow);
+            }
+            oNext.onclick = function() {
+                iNow ++;
+                if(iNow == aLi.length ){
+                    iNow = 0;
+                }
+                changeimg (iNow);
+            }
+            var idx;
+            function changeimg(idx){
+                for (var i = 0; i < aLi.length; i++){
+                    aLi[i].className="";
+                    aA[i].className ="";
+                }
+                aLi[idx].className ="selected";
+                aA[idx].className ="selected";
+            }
+            var timer;
+            function run(){
+                timer = setInterval(function(){
+                    oNext.onclick();} ,2000)
+            }
 
+            run();
+            oContainter.onmouseover = function(){
+                clearInterval (timer);
+           };
+            oContainter.onmouseout = function(){
+                run();
+            };
+
+
+
+    </script>
 </body>
 </html>
