@@ -80,26 +80,64 @@
         </div>
     </div>
     <script>
+        var oContaitner=document.getElementById ('containter');
         var oNav=document.getElementById('nav');
         var aLi=oNav.getElementsByTagName('li');
         var oContent=document.getElementById('content');
         var aA= oContent.getElementsByTagName('a');
         var oPrevo = document.getElementById('prevo');
         var oNext = document.getElementById('next');
-        var last = 0;
-        for( var i = 0; i< aLi.length; i++){
-            aLi[i].index=i;
-            aLi[i].onclick=function() {
-                aLi[last].className = "";
-                aA[last].className = "";
-                this.className = "selected";
-                aA[this.index].className = "selected";
-                last = this.index;
-            }
-            oPrevo.onclick=function(){
+        var iNow = 0;
+        for( var i = 0; i< aLi.length; i++) {
+            aLi[i].index = i;
+            aLi[i].onmouseover = function () {
+//                iNow = this.index ;
+                changeImg (this.index);
 
             }
+        }
 
+        oPrevo.onclick=function(){
+            iNow--;
+            if(iNow == -1){
+                iNow = aLi.length - 1;
+            }
+            changeImg (iNow );
+        };
+
+        oNext.onclick=function(){
+            iNow ++;
+            if(iNow == aLi.length){
+                iNow = 0;
+            }
+            changeImg (iNow);
+        };
+
+
+
+        function changeImg(idx){
+        for (var i = 0; i < aLi.length; i++) {
+            aLi [i].className = "";
+            aA [i].className = "";
+        }
+
+        aLi[idx] .className = "selected";
+        aA [idx].className = "selected";
+
+        }
+        var timer;
+        function run(){
+            timer=setInterval(function(){
+                oNext.onclick()
+            },2000)
+        };
+        run();
+
+        oContainter.onmouseover=function(){
+            clearInterval(timer);
+        }
+        oContainter.onmouseout=function(){
+            run;
         }
     </script>
 
