@@ -60,24 +60,33 @@
     </li>
 </ul>
     <script>
-        var oMenu = document.getElementById('menu');
-        var aH3 = oMenu.getElementsByTagName('h3');
-        for( var i = 0; i < aH3.length;i++){
-            aH3[i].onclick=function() {
+        var oMenu = document.getElementById ('menu');
+        var aH3 = oMenu.getElementsByTagName ('h3');
+        for ( var i = 0; i < aH3.length; i++ ) {
+            aH3 [i].bflag = false;
+            aH3[i].onclick = function () {
                 var oSubMenu = next(this);
-                if (oSubMenu.style.display == "block") {
-                    oSubMenu.style.display = "none";
-                } else {
+
+//                if (oSubMenu) {
+//                    if (oSubMenu.style.display == "block") {
+//                        oSubMenu.style.display = "none";
+//                    } else {
+//                        oSubMenu.style.display = "block";
+//                    }
+//                }
+                if(this.bflag){
+                    oSubMenu.style.display ="none";
+                }else{
                     oSubMenu.style.display = "block";
                 }
+                this.bflag = !this.bflag ;
             }
-            function next(elem){
-                do{
-                    elem = elem.nextSibling;
-                }while(elem&&elem.nodeType!=1)//判断一个变量是否有效可以直接写变量名
-                return elem;
-
-            }
+        }
+        function next(elem){
+            do{
+                elem = elem.nextSibling ;
+            }while(elem&&elem.nodeType != 1)
+            return elem;
         }
     </script>
 </body>
