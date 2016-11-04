@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        ul {
+            list-style: none;
+        }
+
+        a {
+            text-decoration: none;
+        }
+
+        img {
+            border: 0;
+        }
+
+        #container{
+            width: 680px;
+            height: 470px;
+            margin: 50px auto;
+            position: relative;
+        }
+        #menu{
+            overflow: hidden;
+            position: absolute;
+            right: 10px;
+            bottom:10px;
+        }
+        #menu li,#arrows span{
+            width: 20px;
+            height: 20px;
+            background-color: #000000;
+            color:#fff;
+            float: left;
+            margin-right: 5px;
+            text-align: center;
+            line-height: 20px;
+        }
+        #menu .selected {
+            background-color: orange;
+        }
+
+        #content a{
+            display: none;
+        }
+        #content a img{
+            width: 680px;
+            height: 470px;
+        }
+
+        #content a.selected {
+            display: block;
+        }
+        #arrows {
+            position: absolute;
+            left: 10px;
+            bottom: 5px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="menu">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="content">
+            <a href="#" class="selected "><img src="img/1.jbg.jpg" alt=""/></a>
+            <a href="#"><img src="img/2.jbg.jpg" alt=""/></a>
+            <a href="#"><img src="img/3.jbg.jpg" alt=""/></a>
+            <a href="#"><img src="img/4.jbg.jpg" alt=""/></a>
+        </div>
+        <div id="arrows">
+            <span id="prev">&lt;</span>
+            <span id="next">&gt;</span>
+        </div>
+    </div>
+    <script>
+        var oContainer = document.getElementById('container');
+        var oMenu = document.getElementById ('menu');
+        var aLi = oMenu.getElementsByTagName ('li');
+        var oContent = document.getElementById ('content');
+        var aA = oContent.getElementsByTagName ('a');
+        var oPrev = document.getElementById ('prev');
+        var oNext = document.getElementById ('next');
+        var iNow = 0;
+        for( var i = 0; i < aLi.length; i++){
+            aLi[i].index = i;
+            aLi[i].onmouseover = function (){
+                iNow = this.index;
+                changeImg(this.index);
+            }
+        }
+        oPrev.onclick = function () {
+            iNow--;
+            if (iNow == -1) {
+                iNow = aLi.length - 1;
+            }
+            changeImg(iNow);
+        }
+        oNext.onclick= function (){
+            iNow ++;
+            if(iNow == aLi.length){
+                iNow = 0;
+            }
+            changeImg (iNow);
+
+        }
+        var idx;
+        function changeImg(idx){
+            for(var i = 0; i < aLi.length; i++){
+                aLi [i].className = "";
+                aA[i].className = "";
+            }
+            aLi [idx].className = "selected";
+            aA[idx].className ="selected";
+        }
+        var timer;
+        function run(){
+            timer = setInterval(function(){ oNext.onclick();}
+                    ,2000
+            )
+        }
+        run ();
+        oContainer.onmouseover = function(){
+            clearInterval(timer)
+        }
+        oContainer.onmouseout = function(){
+            run();
+        }
+
+    </script>
+
+</body>
+</html>
