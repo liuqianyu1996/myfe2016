@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        * {
+        margin: 0;
+        padding: 0;
+        }
+
+        ul {
+        list-style: none;
+        }
+
+        a {
+        text-decoration: none;
+        }
+
+        #container {
+            width: 390px;
+            height: 200px;
+            margin: 100px auto;
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        #tab {
+            width: 600px;
+            height: 120px;
+            position: absolute;
+        }
+        #tab li{
+            width: 120px;
+            height: 120px;
+            float : left;
+            margin-right: 10px;
+            background-color: #000000;
+            color : #ffffff;
+            font-size : 30px;
+            text-align: center;
+            line-height: 120px;
+
+        }
+        #arrows{
+            width: 160px;
+            height: 30px;
+            position: absolute;
+            left : 50%;
+            margin-left: -80px;
+            bottom : 25px;
+
+        }
+        #prev,#next{
+            width: 70px;
+            height: 30px;
+            float : left;
+            background-color: #ff0000;
+            color: #ffffff;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <ul id="tab">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="arrows">
+            <span id="prev">&lt; 向左</span>
+            <span id="next">向右 &gt;</span>
+        </div>
+    </div>
+    <script>
+        var oTab = document.getElementById ('tab');
+        var aLi = oTab.getElementsByTagName ('li');
+        var oPrev = document.getElementById ('prev');
+        var oNext = document.getElementById ('next');
+        var iWidth = aLi[0].offsetWidth;
+        var speed = 5;
+        oTab.innerHTML += oTab.innerHTML ;
+        oTab.style.width = (aLi.length + 1)  * iWidth + 'px' ;
+        setInterval (function(){
+            oTab.style.left = oTab.offsetLeft - speed + 'px';
+            if(oTab.offsetLeft <= -oTab.offsetWidth/2){
+                oTab.style.left = 0;
+            }
+            if(oTab.offsetLeft > 0){///?为什么它们不能同时大于等于小于等于
+                oTab.style.left = -oTab.offsetWidth /2 +'px';
+            }
+        },50)
+        oNext.onmouseover= function(){
+            speed = -5;
+        }
+        oPrev.onmouseover = function(){
+            speed = 5;
+        }
+
+    </script>
+
+</body>
+</html>
