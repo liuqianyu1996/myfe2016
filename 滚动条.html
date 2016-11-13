@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #container {
+            width: 352px;
+            height: 400px;
+            background: #fff000;
+            border: 1px solid #ff9135;
+            overflow: hidden;
+            position: relative;
+        }
+
+        #content {
+            width: 330px;
+            height: 850px;
+            background: #cccccc;
+            position : absolute;
+            top:0;
+            left:0;
+        }
+
+        #scroll-bar {
+            width: 20px;
+            height: 400px;
+            background: indianred;
+            position: absolute;
+            right: 0;
+            top: 0;
+        }
+
+        #scroll-btn {
+            width: 20px;
+            height: 20px;
+            background: #000000;
+            display: block;
+            position: absolute;
+            left:0;
+            top:0;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <div id="content">
+        JavaScript 是世界上最流行的脚本语言。
+        JavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。
+        JavaScript 被设计为向 HTML 页面增加交互性。
+        许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。
+        如果您希望学习更多关于 JavaScript 的知识，请马上访问我们的 JavaScript 教程。
+        JavaScript 是世界上最流行的脚本语言。
+        JavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。
+        JavaScript 被设计为向 HTML 页面增加交互性。
+        许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。
+        如果您希望学习更多关于 JavaScript 的知识，请马上访问我们的 JavaScript 教程。
+        JavaScript 是世界上最流行的脚本语言。
+        JavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。
+        JavaScript 被设计为向 HTML 页面增加交互性。
+        许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。
+        如果您希望学习更多关于 JavaScript 的知识，请马上访问我们的 JavaScript 教程。
+        JavaScript 是世界上最流行的脚本语言。
+        JavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。
+        JavaScript 被设计为向 HTML 页面增加交互性。
+        许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。
+        如果您希望学习更多关于 JavaScript 的知识，请马上访问我们的 JavaScript 教程。
+        JavaScript 是世界上最流行的脚本语言。
+        JavaScript 是属于 web 的语言，它适用于 PC、笔记本电脑、平板电脑和移动电话。
+        JavaScript 被设计为向 HTML 页面增加交互性。
+        许多 HTML 开发者都不是程序员，但是 JavaScript 却拥有非常简单的语法。几乎每个人都有能力将小的 JavaScript 片段添加到网页中。
+        如果您希望学习更多关于 JavaScript 的知识，请马上访问我们的 JavaScript 教程。
+    </div>
+    <div id="scroll-bar">
+        <span id="scroll-btn"></span>
+    </div>
+</div>
+<script>
+    var oContainer = document.getElementById('container');
+    var oContent = document.getElementById('content');
+    var oScrollBtn = document.getElementById('scroll-btn');
+    oScrollBtn.onmousedown = function (e) {
+        e = e || window.event;
+        iDisY = e.clientY - oContainer.offsetTop - oScrollBtn.offsetTop;
+        document.onmousemove = function (e) {
+            e = e || window.event;
+            var iTop = e.clientY - oContainer.offsetTop - iDisY;
+            if(iTop <= 0){
+                iTop = 0;
+            }
+            if(iTop >=oContainer.offsetHeight - oScrollBtn.offsetHeight ){
+                iTop = oContainer.offsetHeight - oScrollBtn.offsetHeight;
+            }
+            oScrollBtn.style.top = iTop + 'px';
+            var fSale = iTop / (oContainer.offsetHeight - oScrollBtn.offsetHeight) ;
+            oContent.style.top = -(oContent.offsetHeight - oContainer.offsetHeight )*fSale + 'px';
+            return false ;
+        }
+        document.onmouseup = function(){
+            document.onmousemove = null;
+            document.onmouseup = null;
+        }
+    }
+</script>
+
+
+</body>
+</html>
