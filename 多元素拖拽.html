@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+    #div1,#div2,#div3{
+        width: 200px;
+        height: 200px;
+        background-color: #ff0000;
+        position: absolute;
+    }
+
+    #div1 {
+        left:0;
+        top:0;
+    }
+    #div2 {
+        left:0;
+        top:300px;
+    }
+    #div3 {
+        left:0;
+        top:600px;
+    }
+    </style>
+</head>
+<body>
+    <div id="div1"></div>
+    <div id="div2"></div>
+    <div id="div3"></div>
+    <script>
+        var oDiv1 = document.getElementById ('div1');
+        var oDiv2 = document.getElementById ('div2');
+        var oDiv3 = document.getElementById ('div3');
+
+
+        function drag(elem) {
+            var iDisX = iDisY = 0;
+            elem.onmousedown = function (e) {
+                e = e || window.event;
+                iDisX = e.clientX -elem.offsetLeft;
+                iDisY = e.clientY - elem.offsetTop;
+                document.onmousemove = function (e) {
+                    e = e || window.event;
+                    var iLeft = e.clientX - iDisX;
+                    var iTop = e.clientY - iDisY;
+                    if (iLeft <= 20) {
+                        iLeft = 0;
+                    }
+                    if (iLeft >= document.documentElement.clientWidth - elem.offsetWidth) {
+                        iLeft = document.documentElement.clientWidth - elem.offsetWidth;
+                    }
+                    if (iTop <= 20) {
+                        iTop = 0;
+                    }
+                    if (iTop >= document.documentElement.clientHeight - elem.offsetHeight) {
+                        iTop = document.documentElement.clientHeight - elem.offsetHeight;
+                    }
+                    elem .style.left = iLeft + 'px';
+                    elem.style.top = iTop + 'px';
+                    return false;
+
+                }
+                document.onmouseup = function () {
+                    document.onmousemove = null;
+                    document.onmouseup = null;
+                }
+            }
+        }
+        drag (oDiv1);
+        drag (oDiv2);
+        drag (oDiv3);
+
+
+    </script>
+
+</body>
+</html>
