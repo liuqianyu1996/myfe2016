@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+//        var x = Math.random();
+//        var y = Math.random();
+//        function getMax(a,b) {
+//
+//            return(a == b ? a : b);
+//        }
+//         var max = getMax(x,y);
+//        document.write(max)
+//
+
+
+
+        function getLeapYear(year){
+            if(year %400==0)||(year%4==0&&year%100!=0)){
+                return true;
+            }
+            return false;
+        };
+        var now = new Date();
+        var year = now.getFullYear ();
+        if(getLeapYear (year)){
+            document.write(year + '年是闰年');
+        }else{
+            document.write (year + '年不是闰年');
+        }
+
+
+    </script>
+
+</body>
+</html>

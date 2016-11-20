@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+//        编写一个函数 f(x) = 4x2+3x+2，使用户通过提示对话框瑜入x的值
+//        ，能得到相应的计算结果。
+//        var x = window.prompt("请输入一个数");
+//        x = parseInt (x);
+//        x = fx(x)
+//        function fx(nm){
+//            nm = nm * nm*4 + nm*3 + 2;
+//            document.write (nm);
+//        }
+
+//        编写一个函数Min(x,y)求出x,y这两个数中的最小值，
+//        要求x,y的值由用户通过提示
+//        对话框输入。
+//        var A = window.prompt ("请输入数");
+//        var B = window.prompt ("请输入数");
+//         A = parseInt (A);
+//         B = parseInt(B);
+//         min(A,B)
+//        function min(x,y){
+//            document.write(x>y?x:y);
+//        }
+//3.编写一个判断某个非负整数是否能够同时被3,5,7整除的函数，
+//然后在页面上输出1~1000之间所有能同时被3,5,7
+//整除的整数，并要求每行显示6个这样的数。
+        var sum=0;
+        function aa(){
+            for(var n = 1; n <= 1000; n++){
+                if((n%3==0)&&(n%5==0)&&(n%7==0)){
+
+                    while(sum == 6){
+                            document.write("<br>");
+                        }
+                    }
+                    document.write(" "+n);
+                }
+
+            }
+        }
+        aa();
+
+
+    </script>
+</body>
+</html>
