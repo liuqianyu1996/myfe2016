@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        var arr = new Array (4),sum=0,preva;
+        var count = 0
+        for (var i = 0; i <arr.length; i++){
+            arr[i] = window.prompt("请输入"+ i + "个成绩");
+            arr[i]=parseFloat (arr [i]);
+            sum += arr [i];
+            if(arr[i]<60){
+               count ++;
+            }
+        }
+        document.write("总分为"+sum + "<br>");
+        document.write("平均分为"+sum/arr.length+"<br>");
+        document.write("有" + count + "门成绩不及格");
+
+    </script>
+
+</body>
+</html>
