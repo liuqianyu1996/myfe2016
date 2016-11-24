@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        function getLeapYear(year){
+            return (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+        }
+        function getMonth(d){
+            var months=new Array(31,28,31,30,31,30,31,31,30,31,30,31),days=0,i;
+            if(getLeapYear(d.getFullYear ())){
+                months [1]=29;
+            }
+            console.log(d.getMonth() -1)
+            for(i= d.getMonth() -1;i >=0;i--){
+                days += months[i];
+
+
+            }
+            days += d.getDate() ;
+            return days ;
+        }
+        var today = new Date()
+        console.log (getMonth (today))
+    </script>
+
+</body>
+</html>
