@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration:none;
+        }
+        #container {
+            width: 680px;
+            height: 470px;
+            margin: 50px auto;
+            position: relative;
+            overflow: hidden;
+        }
+        #content img{
+            width: 680px;
+            height: 470px;
+            display: none;
+        }
+        #content img.selected {
+            display: block;
+        }
+        #tab {
+            position: absolute;
+            right: 10px;
+            bottom: 10px;
+        }
+        #tab li,#arrows span{
+            width: 20px;
+            height: 20px;
+            float:left;
+            background: #000000;
+            color:#fff;
+            margin-right: 5px;
+            line-height: 20px;
+            text-align: center;
+            cursor: pointer;
+        }
+        #tab li.selected {
+            background: #ff9135;
+        }
+        #arrows{
+            position:absolute;
+            left: 10px;
+            bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="tab">
+            <li class="selected">1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="content">
+            <img src="../img/1.jbg.jpg " alt="" class="selected"/>
+            <img src="../img/2.jbg.jpg" alt=""/>
+            <img src="../img/3.jbg.jpg" alt=""/>
+            <img src="../img/4.jbg.jpg" alt=""/>
+        </div>
+        <div id="arrows">
+            <span id="prev" onselectstart="return false">&lt;</span>
+            <span id="next" onselectstart="return false">&gt;</span>
+        </div>
+    </div>
+    <script>
+        var oContainer = document.getElementById ('container');
+        var oTab = document.getElementById ('tab');
+        var aLi = oTab.getElementsByTagName ('li');
+        var oContent = document.getElementById ('content');
+        var aImg = oContent.getElementsByTagName ('img');
+        var oNext = document.getElementById ('next');
+        var oPrev = document.getElementById ('prev');
+        var iNow = 0;
+        for(var i = 0 ; i <aLi.length; i ++){
+            aLi [i].index = i;
+            aLi [i].onmouseover = function(){
+               changeImg (this.index)
+            }
+        }
+        oPrev.onclick = function(){
+            iNow --;
+            if(iNow == -1){
+                iNow = aLi.length -1;
+            }
+            changeImg (iNow );
+        }
+        oNext.onclick = function(){
+            iNow ++;
+            if(iNow == aLi.length ){
+                iNow = 0;
+            }
+            changeImg (iNow);
+        }
+        var timer;
+        function run(){
+            timer = setInterval(function(){
+                oNext.onclick ();
+            },1000)
+        }
+        run();
+        oContainer.onmouseover =function(){
+            clearInterval(timer);
+        }
+        oContainer.onmouseout = function(){
+            run();
+        }
+
+        function changeImg(idx){
+            iNow = idx;
+            for(var j = 0 ; j < aLi.length; j++){
+                aLi [j].className = "";
+                aImg [j].className = "";
+            }
+            aLi [idx].className = "selected";
+            aImg [idx].className = "selected";
+        }
+    </script>
+
+
+</body>
+</html>
