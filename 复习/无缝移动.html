@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        ul{
+            list-style: none;
+        }
+        a{
+            text-decoration:none;
+        }
+        #container{
+            width: 330px;
+            height: 200px;
+            margin: 100px auto;
+            border: 1px solid;
+            position: relative;
+            overflow: hidden;
+        }
+        #tab{
+            width: 450px;
+            position: absolute;
+            left:0;
+        }
+        #tab li{
+            width: 100px;
+            height: 100px;
+            background: #000000;
+            color:#fff;
+            float: left;
+            margin-right : 10px;
+        }
+        #arrows {
+            width: 110px;
+            height: 40px;
+            position: absolute;
+            left:50%;
+            margin-left: -55px;
+            bottom:20px;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <ul id="tab">
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+            <li>4</li>
+        </ul>
+        <div id="arrows">
+            <span id="prev">向左</span>
+            <span id="next">向右</span>
+        </div>
+    </div>
+    <script>
+        var oTab = document.getElementById ('tab');
+        oTab.innerHTML += oTab.innerHTML ;
+        oTab.style.width = oTab.offsetWidth *2 + 'px';
+        var oNext = document.getElementById ('next');
+        var oPrev = document.getElementById ('prev');
+        var speed = 10 ;
+        setInterval(function(){
+            oTab.style.left = oTab.offsetLeft -speed + 'px';
+            if(oTab.offsetLeft == -oTab.offsetWidth /2){
+                oTab.style.left = 0 + 'px';
+            }
+            if(oTab.offsetLeft == 0){
+                oTab.style.left = -oTab.offsetWidth /2 + 'px';
+            }
+                },100
+        )
+        oNext.onmouseover = function(){
+            speed = -10;
+        }
+        oPrev.onmouseover = function(){
+            speed = 10;
+        }
+
+    </script>
+
+</body>
+</html>
