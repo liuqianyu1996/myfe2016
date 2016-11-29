@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <botton id="btn">add</botton>
+    <ul id="ul1">
+        <li>1</li>
+        <li>2</li>
+        <li>3</li>
+        <li>4</li>
+    </ul>
+    <script>
+        var oBtn = document.getElementById ('btn');
+        var oUl1 = document.getElementById ('ul1');
+        var aLi = oUl1.getElementsByTagName ('li');
+        oBtn.onclick = function(){
+            var oLi = document.createElement ('li');
+            oLi.innerHTML = Math.random();
+            oUl1.appendChild(oLi);
+        }
+        oUl1.onclick = function(e){
+           var target = e.target ||window.event.srcElement;
+            console.log(target.innerHTML)
+        }
+    </script>
+
+
+</body>
+</html>

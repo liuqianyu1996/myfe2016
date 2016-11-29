@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        .circle,.circle::after{
+            width: 200px;
+            height: 200px;
+            border-width:10px;
+            border-radius:50%;
+            border-style:solid;
+            margin:10px;
+            position: absolute;
+        }
+        .circle::after{
+            content: "";
+            left: -20px;
+            top: -20px;
+        }
+        .circle1 {
+            position: absolute;
+            top: 0;
+            left: 0;
+            border-color:blue;
+        }
+        .circle1::after{
+            border-color:blue;
+            z-index: 1;
+            border-bottom-color: transparent;
+        }
+        .circle2 {
+            position: absolute;
+            top: 0;
+            left: 230px;
+            border-color:black;
+        }
+        .circle2::after{
+            border-color:black;
+            z-index: 1;
+            border-left-color:transparent;
+        }
+        .circle3 {
+            position: absolute;
+            top:0;
+            left:460px;
+            border-color:red;
+        }
+        .circle3::after{
+            border-color:red;
+            z-index: 2;
+            border-left-color: transparent;
+        }
+        .circle4 {
+            position: absolute;
+            top: 115px;
+            left: 115px;
+            border-color:yellow;
+        }
+        .circle4::after{
+            border-color:yellow;
+            border-bottom-color:transparent ;
+        }
+
+        .circle5 {
+            position: absolute;
+            top: 115px;
+            left: 345px;
+            border-color:green;
+        }
+        .circle5::after{
+            border-color:green;
+            z-index: 1;
+            border-top-color:transparent;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div class="circle circle1"></div>
+    <div class="circle circle2"></div>
+    <div class="circle circle3"></div>
+    <div class="circle circle4"></div>
+    <div class="circle circle5"></div>
+
+</body>
+</html>
