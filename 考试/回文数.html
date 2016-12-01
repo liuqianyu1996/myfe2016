@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+</head>
+<body>
+    <script>
+        function test(n,m){
+            for(var i = n; i < m; i++){
+                var num = i + '';
+                var newnum = num.split('').reverse().join('');
+                if(num==newnum){
+                    console.log(num);
+                }
+            }
+        }
+        test(10,1000)
+
+    </script>
+
+</body>
+</html>
