@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: #000000;
+            perspective:1000px;
+        }
+        #container{
+            width: 400px;
+            height: 300px;
+            margin: 200px auto;
+            transform-style:preserve-3d;
+            animation: rotates 2s linear infinite;
+        }
+        @keyframes rotates{
+            from{
+            }
+            to{
+                transform: rotateY(360deg);
+            }
+        }
+        #container img{
+            width: 400px;
+            height: 300px;
+            position: absolute;
+            opacity:0.5;
+            border-radius:10px;
+        }
+        #container .one{
+            transform: rotateY(-180deg) translateZ(200px);
+        }
+        #container .two{
+             transform: rotateX(90deg) translateZ(150px);
+        }
+        #container .tree{
+            transform: rotateX(-90deg) translateZ(150px);
+        }
+        #container .four{
+            transform: rotateY(90deg) translateZ(200px);
+        }
+        #container .five{
+            transform: rotateY(-90deg) translateZ(200px);
+        }
+        #container .six{
+            transform: translateZ(200px);
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="img/1.jpg" alt="" class="cube one"/>
+        <img src="img/3.jpg" alt="" class="cube two"/>
+        <img src="img/5.jpg.jpg " alt="" class="cube tree"/>
+        <img src="img/6.jpg " alt="" class="cube four"/>
+        <img src="img/7.jpg.jpg " alt=""class="cube five"/>
+        <img src="img/8.jpg" alt="" class="cube six"/>
+    </div>
+
+</body>
+</html>
