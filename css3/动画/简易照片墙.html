@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            background: #cccccc;
+        }
+        #container{
+            width: 480px;
+            height: 320px;
+            margin: 100px auto;
+        }
+        #container img{
+            width: 480px;
+            height: 320px;
+            position: absolute;
+            border:10px solid #ffffff;
+            -webkit-box-shadow: 10px 10px 10px rgba(50,50,50,0.5);
+        }
+        #container img:first-child{
+            transform: rotate(30deg);
+        }
+        #container img:last-child{
+            transform: rotate(-20deg);
+        }
+        #container img:hover{
+            z-index: 1;
+            transform: scale(1.2);
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="img/5.jpg.jpg" alt=""/>
+        <img src="img/7.jpg.jpg " alt=""/>
+    </div>
+
+
+</body>
+</html>
