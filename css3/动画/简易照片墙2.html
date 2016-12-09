@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #container{
+            width: 470px;
+            height: 320px;
+            margin:100px auto;
+        }
+        #container img{
+            width: 470px;
+            height: 320px;
+            position: absolute;
+            border:10px solid #fff;
+            -webkit-box-shadow:10px 10px 10px rgba(50,50,50,1);
+        }
+
+        #container img:first-child{
+            transform: rotate(30deg);
+        }
+        #container img:last-child{
+            transform:rotate(-15deg);
+        }
+        #container img:hover{
+            transform: scale(1.2);
+            z-index: 1;
+        }
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <img src="img/1.jpg" id="img1" alt=""/>
+        <img src="img/6.jpg" id="img2" alt=""/>
+    </div>
+
+</body>
+</html>
