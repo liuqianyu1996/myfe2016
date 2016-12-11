@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #container {
+            width: 400px;
+            height: 400px;
+            margin: 300px auto;
+            position: relative;
+            perspective: 1000px;
+        }
+        img{
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            transition:1s all ease;
+        }
+        #home {
+            width: 50px;
+            height: 50px;
+            transition: transform 1s ease;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="menu">
+            <img src="img/close.png " alt=""/>
+            <img src="img/full.png" alt=""/>
+            <img src="img/open.png " alt=""/>
+            <img src="img/prev.png " alt=""/>
+            <img src="img/refresh.png " alt=""/>
+        </div>
+        <div id="home">
+            <img src="img/home.png " alt=""/>
+        </div>
+    </div>
+    <script>
+        var oHome = document.getElementById ('home');
+        var oMenu = document.getElementById ('menu');
+        var aImg = oMenu.getElementsByTagName ('img');
+        var bFlag = false;//false要打开 true要和住；
+        oHome.onclick = function(){
+            if(bFlag){
+                oHome.style.transform = "rotate(0deg)";
+                for(var i = 0 ; i < aImg.length ; i ++){
+                    aImg[i].style.transform = "translate(0,0) rotate(0deg)";
+                    aImg [i].style.transitionDelay = i * 100 + "ms";
+                }
+
+            }else{
+                oHome.style.transform = "rotate(-360deg)";
+                for(var i = 0 ; i < aImg.length ; i ++){
+                   var x = -200*Math.cos (Math.PI/180*i*22.5);
+                   var y = -200*Math.sin (Math.PI/180*i*22.5);
+                    aImg [i].style.transform = "translate("+x+"px,"+ y+"px) rotate(-360deg)";
+                    aImg [i].style.transitionDelay = (aImg.length-i) * 100 + "ms";
+                }
+            }
+           bFlag = !bFlag ;
+        }
+        for(var i = 0 ; i < aImg.length ; i ++){
+            aImg [i].addEventListener("click",function(){
+                console.log("ok");
+                aImg [i].style.transform = "scale(2)";
+            });
+        }
+
+    </script>
+
+</body>
+</html>

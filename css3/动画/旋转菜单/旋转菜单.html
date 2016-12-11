@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+
+        #imgs{
+            width: 400px;
+            height: 400px;
+            background: #ffffff;
+            border-radius: 50%;
+            position: relative;
+            margin: 100px auto;
+        }
+        #imgs img{
+            position: absolute;
+            border-radius: 50%;
+            transform-origin:-100px 200px;
+            left:156px;
+            top:156px;
+            transition:all 1s ease ;
+        }
+        #imgs #home {
+            transform-origin: center;
+            left:156px;
+            top:156px;
+            z-index: 1;
+        }
+
+    </style>
+</head>
+<body>
+    <div id="container">
+        <div id="imgs">
+            <img src="img/home.png " alt="" id="home"/>
+            <img src="img/refresh.png " alt="" id="refresh"/>
+            <img src="img/full.png " alt="" id="full"/>
+            <img src="img/open.png " alt="" id="open"/>
+            <img src="img/prev.png " alt="" id="prev"/>
+            <img src="img/close.png " alt="" id="close"/>
+        </div>
+    </div>
+    <script>
+        var oHome = document.getElementById ('home');
+        var oImgs = document.getElementById ('imgs')
+        var aImg = oImgs.getElementsByTagName ('img');
+        var oRefresh = document.getElementById ('refresh');
+        var oFull = document.getElementById ('full');
+        var oPen = document.getElementById ('open');
+        var oPrev = document.getElementById ('prev');
+        var oClose = document.getElementById ('close');
+
+        var bFlag = false;
+        oHome.onclick =function(){
+            if(bFlag){
+                oHome.style.transform = "rotate(360deg)";
+                for(var i = 1 ;i <aImg.length; i++){
+                    aImg [i].style.top = "0";
+                    aImg [i].style.transform = "rotate(360deg)";
+                    aImg[i].style.transform = "rotate(-"+22.5*i+"deg)";
+
+                }
+            }else{
+                oHome.style.transform = "rotate(-360deg)";
+                for(var i = 1 ;i <aImg.length; i++){
+                    aImg [i].style.top = "156px";
+                    aImg[i].style.transform = "rotate("+0+"deg)";
+                }
+
+            }
+            bFlag = !bFlag ;
+        }
+        for(var i=1 ; i < aImg.length ;i++){
+
+            aImg [i].onclick = function(){
+                this.currenttransform = this.style.transform;
+                if(this.currenttransform.indexOf("scale(2)")==-1){
+                    this.style.transform = "scale(2)";
+                }
+
+            }
+        }
+    </script>
+
+</body>
+</html>
