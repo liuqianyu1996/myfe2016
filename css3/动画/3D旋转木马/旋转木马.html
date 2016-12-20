@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            perspective:1000px;
+            perspective-origin: 50% -100%;
+        }
+        #container {
+            width: 130px;
+            height: 130px;
+            margin: 200px auto;
+            transform-style:preserve-3d;
+            transition: 1s all ease;
+        }
+
+        #container img{
+            position: absolute;
+            transform-origin: center;
+            transition: 3s all ease;
+
+        }
+
+        /*#container img:nth-child(1) {*/
+            /*transform: rotateY(40deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(2){*/
+            /*transform: rotateY(80deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(3){*/
+            /*transform: rotateY(120deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(4){*/
+            /*transform: rotateY(160deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(5){*/
+            /*transform: rotateY(200deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(6){*/
+            /*transform: rotateY(240deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(7){*/
+            /*transform: rotateY(280deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(8){*/
+            /*transform: rotateY(320deg) translateZ(200px);*/
+        /*}*/
+        /*#container img:nth-child(9){*/
+            /*transform:  translateZ(200px);*/
+        /*}*/
+
+
+
+
+
+    </style>
+</head>
+<body>
+    <div id="container">
+
+    </div>
+    <script>
+        var oContainer = document.getElementById ('container');
+        var count = 0;
+        for(var i = 0; i <9 ; i++){
+
+            var oImg = new Image();
+            oImg.onload = function(){
+                count++;
+                if(count == 9){
+                    loadsuccess();
+                }
+            }
+            oImg.src = "img/"+(i+1)+".jpg";
+            oContainer.appendChild (oImg);
+        }
+
+        function loadsuccess (){
+            var aImg = oContainer.getElementsByTagName ('img');
+            for(var i = 0; i < aImg.length ; i++){
+                aImg [i].style.transitionDelay = i*100 + "ms";
+                aImg [i].style.transform = "rotateY("+i*40+"deg) translateZ(200px)";
+            }
+
+        }
+        var num = 1;
+        oContainer.onclick = function(){
+            oContainer.style.transform = "rotateY("+40*(num++)+"deg)";
+        }
+
+
+    </script>
+</body>
+</html>

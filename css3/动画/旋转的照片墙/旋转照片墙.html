@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            background: url(img/bg.jpg);
+        }
+        #container .img{
+            width: 125px;
+            height: 125px;
+            border:5px solid #fff;
+            box-shadow:2px 2px 2px 2px rgba(0,0,0,0.4);
+            position:absolute;
+            left:-500px;
+            top:-500px;
+            transition:all 1s ease ;
+        }
+    </style>
+</head>
+<body>
+    <div id="container">
+    <div id="arrows">
+        <span id="prev"></span>
+        <span id="next"></span>
+    </div>
+    </div>
+    <script>
+        (function(){
+//            var oContainer=document.getElementById ('container');
+//            var COL= 4,
+//                ROW= 6,
+//                NUM=COL*ROW;
+//            var count=0;
+//            for(var i=0;i<NUM;i++){
+//                var oThumbs = new Image();
+//                oThumbs.onload=function(){
+//                    count++;
+//                    if(count==NUM*2){
+//                        loadsuccess ();
+//                    }
+//
+//                }
+//                oThumbs.src="img/thumbs/"+(i+1)+".jpg";
+//                var oBigImg = new Image();
+//                oBigImg.onload = function(){
+//                    count++;
+//                    if(count==NUM*2){
+//                        loadsuccess ();
+//                    }
+//                }
+//                oBigImg.src="img/"+(i+1)+".jpg";
+//            }
+//            var timer;
+//            function loadsuccess(){
+//                var index=0;
+//                for(var i=0;i<ROW;i++){
+//                    for(var j=0;j<COL;j++){
+//                        index++;
+//                        var oDiv = document.createElement("div");
+//                        oDiv.style.backgroundImage="url(img/thumbs/"+index+".jpg)";
+//                        oDiv.className = "img";
+//                        oDiv.pos={
+//                            row:i,
+//                            col:j
+//                        };
+//                        oContainer.appendChild(oDiv);
+//                    }
+//                }
+//
+//                var aDiv = oContainer.getElementsByTagName ('div');
+//                var bodyWidth = document.body.clientWidth;
+//                var bodyHeight=document.body.clientHeight ;
+//                var iDivWidth = aDiv[0].offsetWidth ;
+//                var iDivHeight= aDiv[0].offsetHeight;
+//                var iColGap = (bodyWidth - COL*iDivWidth)/(COL+1);
+//                var iRowGap = (bodyHeight - ROW*iDivHeight)/(ROW+1);
+//
+//
+//                var timecount=24;
+//                timer = setInterval (function(){
+//                    timecount --;
+//                    aDiv[timecount].style.left =( iDivWidth + iColGap )*aDiv[timecount].pos.col+ iColGap + 'px';
+//                    aDiv[timecount].style.top=(iDivHeight + iRowGap )*aDiv[timecount].pos.row + iRowGap + 'px';
+//                },200);
+//               if(timecount == 0){
+//                   clearInterval (timer);
+//               }
+
+
+
+            var timer;
+            var ROW = 4,
+                    COL = 6,
+                    NUM = ROW * COL,
+                    ThumbWidth = 125,
+                    ThumbHeight = 125,
+                    BigImgWidth = 750,
+                    BigImgHeight = 500;
+            var count = 0;
+            var oContainer = document.getElementById("container");
+            var oPrev = document.getElementById("prev");
+            var oNext = document.getElementById("next");
+            var iNow = 0;//存储当前显示的图片的索引
+            for(var i=0; i<NUM; i++){//图片预处理，24个小图片和24个大图片
+                var oThumbImg = new Image();
+                oThumbImg.onload = function(){
+                    count++;
+                    if(count == NUM * 2){
+                        loadSuccess();
+                    }
+                };
+                oThumbImg.src = "img/thumbs/" + (i + 1) + ".jpg";
+
+                var oBigImg = new Image();
+                oBigImg.onload = function(){
+                    count++;
+                    if(count == NUM * 2){
+                        loadSuccess();
+                    }
+                };
+                oBigImg.src = "img/"+ (i + 1) +".jpg";
+            }
+
+            //图片预处理完成后执行的函数
+
+            function loadSuccess() {
+                //创建24个div元素
+                var index = 0;
+                for (var i = 0; i < ROW; i++) {
+                    for (var j = 0; j < COL; j++) {
+                        index++;
+                        var oDiv = document.createElement("div");
+                        oDiv.style.backgroundImage = "url(img/thumbs/" + index + ".jpg)";
+                        oDiv.className = "img";
+                        oDiv.pos = {
+                            row: i,
+                            col: j
+                        };
+                        oDiv.innerHTML = "<span></span>";
+                        oDiv.index = index;
+                        oContainer.appendChild(oDiv);
+                    }
+                }
+
+                var aDiv = oContainer.getElementsByTagName("div");
+                var bodyWidth = document.body.clientWidth;
+                var bodyHeight = document.body.clientHeight;
+                //计算行间距和列间距
+                var oDivWidth = aDiv[0].offsetWidth;
+                var oDivHeight = aDiv[0].offsetHeight;
+                var iColGap = (bodyWidth - oDivWidth * COL) / (COL + 1);
+                var iRowGap = (bodyHeight - oDivHeight * ROW) / (ROW + 1);
+
+                //使用定时器使div飞入相应的位置
+                var timerCount = NUM;
+                timer = setInterval(function () {
+                    timerCount--;
+                    aDiv[timerCount].style.left = (iColGap + oDivWidth) * aDiv[timerCount].pos.col + iColGap + "px";
+                    aDiv[timerCount].style.top = (iRowGap + oDivHeight) * aDiv[timerCount].pos.row + iRowGap + "px";
+                    aDiv[timerCount].style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+                    if (timerCount == 0) {
+                        clearInterval(timer);
+                    }
+                }, 100);
+            }
+
+            })();
+    </script>
+
+</body>
+</html>
