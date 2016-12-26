@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html{
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            width: 100%;
+            height: 100%;
+            background-image: url(img/bg.jpg);
+        }
+        #container .img{
+            width: 125px;
+            height: 125px;
+            border:5px solid #fff;
+            box-shadow: 2px 2px 2px 2px rgba(0,0,0,0.4);
+            position: absolute;
+            left:-500px;
+            top:-500px;
+            transition: all 1s ease-in-out;
+        }
+        #container span{
+            width: 100%;
+            height: 100%;
+            display: block;
+            opacity: 0;
+            transition: all 1s ease-in-out;
+        }
+        #next ,#prev {
+            width: 60px;
+            height: 60px;
+            background-repeat: no-repeat;
+            display: none;
+            background-color: #fff;
+            background-position:  center;
+            border-radius:30%;
+            position: absolute;
+            top:50%;
+            margin-top: -30px;
+        }
+        #next {
+            background-image: url(img/next.png);
+            right:-20px;
+
+        }
+        #prev {
+            background-image: url(img/prev.png);
+            left: -20px;
+        }
+    </style>
+</head>
+<body>
+    <div id="container"></div>
+    <div id="arrows">
+        <span id="prev"></span>
+        <span id="next"></span>
+    </div>
+    <script>
+        var COL = 6,
+            ROW = 4,
+            NUM = COL*ROW,
+            iThumbsWidth = 125,
+            iThumbsHeight = 125,
+            iBigImgWidth = 750,
+            iBigImgHeight = 500;
+        var oContainer = document.getElementById ('container');
+        var count = 0;
+        for(var i = 0 ; i < NUM ; i++ ){
+            var oThumbs = new Image();
+            oThumbs.onload = function(){
+                count++;
+                if(count == NUM*2){
+                    loadsuccess ();
+                }
+
+            }
+            oThumbs.src = "img/thumbs/"+(i+1)+".jpg";
+            var oBigImg = new Image();
+            oBigImg .onload = function(){
+                count++;
+                if(count == NUM*2){
+                    loadsuccess ();
+                }
+            }
+            oBigImg.src = "img/"+(i+1)+".jpg";
+        }
+        var index = 0;
+        var timer;
+        var iNow = 0;
+        function loadsuccess() {
+            for (var i = 0; i < ROW; i++) {
+                for (var j = 0; j < COL; j++) {
+                    index++;
+                    var oDiv = document.createElement('div');
+                    oDiv.className = "img";
+                    oDiv.style.backgroundImage = "url(img/thumbs/" + index + ".jpg)";
+                    oDiv.pos = {
+                        col: j,
+                        row: i
+                    }
+                    oDiv.innerHTML = "<span></span>";
+                    oDiv.index = index;
+                    oContainer.appendChild(oDiv);
+                }
+            }
+            var aDiv = oContainer.getElementsByTagName('div');
+            var bodyWidth = document.body.clientWidth;
+            var bodyHeight = document.body.clientHeight;
+            var iDivWidth = aDiv[0].offsetWidth;
+
+            var iDivHeight = aDiv [0].offsetHeight;
+            var iColGap = (bodyWidth - iDivWidth * COL) / (COL + 1);
+            //console.log( bodyWidth );
+            var iROWGap = (bodyHeight - iDivHeight * ROW) / (ROW + 1);
+            //console.log(bodyHeight);
+            var timercount = NUM;
+            timer = setInterval(function () {
+                timercount--;
+                aDiv[timercount].style.left = (iDivWidth + iColGap ) * aDiv [timercount].pos.col + iColGap + 'px';
+                aDiv [timercount].style.top = (iDivHeight + iROWGap) * aDiv [timercount].pos.row + iROWGap + 'px';
+                aDiv [timercount].style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+                if (timercount == 0) {
+                    clearInterval(timer);
+                }
+            }, 200)
+
+            var flag = true;
+            var oPrev = document.getElementById ('prev');
+            var oNext = document.getElementById ('next');
+            oContainer.onclick = function (e) {
+                var target = e.target || window.event.srcElement ;
+                if(target.className != "img"){
+                    target = target.parentNode;
+                }
+                console.log(target);
+                clearInterval (timer);
+                if (flag) {
+                    for (var i = 0; i < NUM; i++) {
+                        aDiv[i].style.left =( bodyWidth - iBigImgWidth)/2 + (iThumbsWidth + 2)*aDiv[i].pos.col + 'px';
+                        aDiv[i].style.top = (bodyHeight - iBigImgHeight)/2 + (iThumbsHeight +2)*aDiv[i].pos.row + 'px';
+                        aDiv [i].style.transform = "rotate(0deg)";
+                        aDiv [i].style.border = " 1px solid #fff";
+                        var oSpan = aDiv[i].getElementsByTagName('span')[0];
+                        oSpan.style.backgroundImage = "url(img/"+target.index+".jpg)";
+                        var x = -(iThumbsWidth )*aDiv[i].pos.col;
+                        var y = -(iThumbsHeight)*aDiv [i].pos.row;
+                        oSpan.style.backgroundPosition = x+ "px "+y+"px";
+                        oSpan.style.opacity = "1";
+                        oPrev.style.display = oNext.style.display="block";
+                        iNow = target.index;
+                    }
+                } else {
+                    for(var i = 0; i < NUM; i++){
+                        aDiv[i].style.left = (iDivWidth + iColGap ) * aDiv [i].pos.col + iColGap + 'px';
+                        aDiv [i].style.top = (iDivHeight + iROWGap) * aDiv [i].pos.row + iROWGap + 'px';
+                        aDiv [i].style.transform = "rotate(" + (Math.random() * 40 - 20) + "deg)";
+                        var oSpan = aDiv [i].getElementsByTagName('span')[0];
+                        oSpan.style.opacity = "0";
+                    }
+
+                }
+                flag = !flag;
+                
+            }
+
+            oPrev.onclick = oNext.onclick = function () {
+                if (this == oNext) {
+                    iNow++;
+                    if (iNow == aDiv.length + 1) {
+                        iNow = 1;
+                    }
+                } else {
+                    iNow--;
+                    if (iNow == 0) {
+                        iNow = aDiv.length;
+                    }
+
+                }
+                var arr=[];
+                for(var i = 0; i < NUM; i++){
+                    arr.push(i);
+                }
+                arr.sort(function(){
+                    return Math.random;
+                })
+
+                for (var i = 0; i < NUM; i++) {
+                    var t=arr.pop();
+                    var oSpan = aDiv[t].getElementsByTagName('span')[0];
+                    oSpan.style.backgroundImage = "url(img/" + iNow+ ".jpg)";
+                    var x = -(iThumbsWidth ) * aDiv[t].pos.col;
+                    var y = -(iThumbsHeight) * aDiv [t].pos.row;
+                    oSpan.style.backgroundPosition = x + "px " + y + "px";
+                    oSpan.style.opacity = "1";
+                    oSpan.style.transitionDelay = i*50 + 'ms';
+                }
+            }
+        }
+    </script>
+</body>
+
+</html>

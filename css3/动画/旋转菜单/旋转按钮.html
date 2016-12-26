@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        #container{
+            width: 400px;
+            height: 400px;
+            margin:300px auto;
+            position: relative;
+        }
+        #home {
+            width: 50px;
+            height: 50px;
+            transition: all 1s  ease;
+        }
+        #container  img{
+            position: absolute;
+            border-radius: 50%;
+            transition: all 1s  ease;
+            width: 50px;
+            height: 50px;
+        }
+    </style>
+
+</head>
+<body>
+    <div id="container">
+        <div id="menu">
+            <img src="img/close.png" alt=""/>
+            <img src="img/full.png " alt=""/>
+            <img src="img/open.png " alt=""/>
+            <img src="img/prev.png" alt=""/>
+            <img src="img/refresh.png " alt=""/>
+        </div>
+        <div id="home">
+            <img src="img/home.png " alt=""/>
+        </div>
+
+    </div>
+    <script>
+        var oMenu = document.getElementById ('menu');
+        var aImg = oMenu.getElementsByTagName('img');
+        var oHome = document.getElementById ('home');
+        var flag = true;
+        oHome.onclick = function(){
+            if(flag){
+                this.style.transform = "rotate(-360deg)";
+                //console.log(aImg);
+                for(var i = 0 ; i < aImg.length;i++){
+                    var x = -Math.cos(22.5*i*Math.PI/180)*200;
+                    var y = -Math.sin(22.5*i*Math.PI/180)*200;
+                    aImg[i].style.transform = "translate("+x+"px,"+y+"px) rotate(-360deg)";
+                    aImg [i].style.transitionDelay = (aImg.length-i) * 50 + "ms";
+                    aImg [i].currenttransform = aImg [i].style.transform;
+                }
+            }else {
+                this.style.transform = "rotate(0deg)";
+                for (var i = 0; i < aImg.length; i++) {
+                    aImg[i].style.transform = "translate(0px,0px) rotate(0deg)";
+                    aImg [i].style.transitionDelay = i* 50 + "ms";
+                }
+            }
+            flag = !flag;
+        }
+        for(var i = 0 ; i <aImg.length;i++){
+            aImg [i].state = true;
+            aImg [i].onclick = function(){
+                if(this.state){
+                    this.style.transform = this.currenttransform + "scale(2)";
+                    this.addEventListener("webkitTransitionEnd",fn);
+                }
+                function fn(){
+                    this.style.transform = this.currenttransform;
+                    this.state = !this.state;
+                }
+            }
+        }
+    </script>
+
+</body>
+</html>
