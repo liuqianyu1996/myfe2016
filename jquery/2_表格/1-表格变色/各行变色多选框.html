@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        body{
+            font-size: 12px;
+        }
+        th{
+            border-bottom: 1px solid;
+            width: 80px;
+        }
+        td{
+            width: 80px;
+            height: 20px;
+        }
+        .odd {
+            background: #FFF38F;
+        }
+
+        .even {
+            background: #FFFFEE;
+        }
+        .select {
+            background: deeppink;
+
+        }
+
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <tr><th> </th><th>姓名</th><th>性别</th><th>暂住地</th></tr>
+    </thead>
+    <tbody>
+    <tr>
+        <td><input type="checkbox" name="choice" value=""/></td>
+        <td>张山</td><td>男</td><td>浙江宁波</td></tr>
+    <tr>
+        <td><input type="checkbox" name="choice" value=""/></td>
+        <td>张山</td><td>男</td><td>浙江宁波</td></tr>
+    <tr>
+        <td><input type="checkbox" name="choice" value=""/></td>
+        <td>李四</td><td>女</td><td>浙江杭州</td></tr>
+    <tr>
+        <td><input type="checkbox" name="choice" value=""/></td>
+        <td>王五</td><td>男</td><td>湖南长沙</td></tr>
+    <tr>
+        <td><input type="checkbox" name="choice" value=""/></td>
+        <td>找六</td><td>男</td><td>浙江温州</td></tr>
+    <tr>
+        <td><input type="checkbox" name="choice" value=""/></td>
+        <td>Rain</td><td>男</td><td>浙江杭州</td></tr>
+    <tr>
+        <td><input type="checkbox" name="choice" value=""/></td>
+        <td>MAXMAN</td><td>女</td><td>浙江杭州</td></tr>
+    </tbody>
+</table>
+<script src="../../jquery-1.12.4.js"></script>
+<script>
+    $(function(){
+        $("tbody tr:odd").addClass("odd");
+        $("tbody tr:even").addClass("even");
+        $("tbody tr").on("click",function(){
+            $(this).toggleClass("select");
+            if(!$(event.target).is(":checkbox")){
+                var $flag = $(this).find(":checkbox").prop("checked");
+                $(this).find(":checkbox").prop("checked",!$flag);
+            }
+
+        })
+    })
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        th{
+            width: 50px;
+            height: 20px;
+        }
+        td{
+            width: 50px;
+            height: 20px;
+        }
+        .menu{
+            background: #ccc;
+            width: 150px;
+            height: 20px;
+        }
+        .select{
+            background: #ffff00;
+        }
+    </style>
+</head>
+<body>
+<table>
+    <thead>
+    <th>姓名</th>
+    <th>性别</th>
+    <th>站驻地</th>
+    </thead>
+    <tbody>
+    <tr class="menu">
+        <td colspan="3">菜单</td>
+    </tr>
+    <tr>
+        <td>小王</td>
+        <td>女</td>
+        <td>吴忠</td>
+    </tr>
+    <tr>
+        <td>小王</td>
+        <td>女</td>
+        <td>吴忠</td>
+    </tr>
+    <tr class="menu">
+        <td  colspan="3">菜单</td>
+    </tr>
+    <tr>
+        <td>小王</td>
+        <td>女</td>
+        <td>吴忠</td>
+    </tr>
+    <tr>
+        <td>小王</td>
+        <td>女</td>
+        <td>吴忠</td>
+    </tr>
+    <tr class="menu">
+        <td colspan="3">菜单</td>
+    </tr>
+    <tr>
+        <td>小王</td>
+        <td>女</td>
+        <td>吴忠</td>
+    </tr>
+    <tr>
+        <td>小王</td>
+        <td>女</td>
+        <td>吴忠</td>
+    </tr>
+    </tbody>
+</table>
+<script src="../../jquery-1.12.4.js"></script>
+<script>
+    $(".menu").on("click",function(){
+//        console.log($(this).nextUntil(".menu"));
+        $(this).toggleClass("select").nextUntil(".menu").toggle();
+
+    })
+</script>
+</body>
+</html>
