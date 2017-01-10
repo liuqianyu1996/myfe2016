@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        ul{
+            list-style:none;
+            height: 30px;
+        }
+        #container{
+            width: 300px;
+            height: 130px;
+            margin:200px auto;
+        }
+        #container li{
+            width: 50px;
+            height: 30px;
+            background: #ccc;
+            float:left;
+            font-size: 14px;
+            text-align: center;
+            line-height: 30px;
+            margin-right: 10px;
+            cursor:pointer;
+        }
+        #content{
+            width: 300px;
+            height: 110px;
+            border:5px solid #ff0000;
+        }
+    </style>
+</head>
+<body>
+<div id="container">
+    <ul>
+        <li class="bigger">放大</li>
+        <li class="smaller">缩小</li>
+    </ul>
+    <div id="content">
+        多行文本框高度变化2-多行文本框高度变化2-多行文本框高度变化2-多行文本框高度变化
+        多行文本框高度变化2多行文本框高度变化2
+    </div>
+</div>
+<script src="../../jquery-1.12.4.js"></script>
+<script>
+    $(".bigger").on("click",function(){
+        if(!$("#content").is(":animated")){
+            if($("#content").height()<=400){
+                $("#content").animate({
+                    height: "+=50"
+                })
+            }
+        }
+
+    })
+    $(".smaller").on("click",function(){
+        if(!$("#content").is(":animated")){
+            if($("#content").height()>=100){
+                $("#content").animate({
+                    height:"-=50"
+                })
+            }
+        }
+    })
+</script>
+</body>
+</html>
