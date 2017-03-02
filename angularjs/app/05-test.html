@@ -1,0 +1,42 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+	<title>Document</title>
+</head>
+
+<!-- {{expresstion | filter}}
+{{expresstion | filter1 | filter2}}
+{{expresstion | filter:param}} -->
+
+<body ng-app="myApp">
+	<div ng-controller="firstController">
+		{{1234.567 | number:2}} <br />
+		{{num | number:4}}
+		<br />
+		{{9999999 | currency:'rmb'}}
+		<br />
+		{{today |date:'y-M-d H-m-s'}}
+		<br />
+		{{[1,2,3,4,5,6] | limitTo:-5}}
+		<br />
+		{{data.message | lowercase}}
+		<br />
+		{{data.newlit | uppercase}}
+		<br />
+		{{data.city |filter:'上海'}}
+		<br />
+		{{data.city |orderBy : '-py'}}
+
+		<!-- 输出过滤 -->
+		<!-- 输入过滤 -->
+		ng-required必须填写 
+		ng-maxlength  ng-minlength ng-pattern正则匹配
+		ng-change
+		
+	</div>
+
+	<script src="../angular-1.2.18/angular.js"></script>
+	<script src="./app/05-test.js"></script>
+</body>
+</html>

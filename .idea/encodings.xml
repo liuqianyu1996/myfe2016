@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="Encoding">
+    <file url="file://$PROJECT_DIR$/requirejs/css/demo.css" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/requirejs/js/demo.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/requirejs/js/demo2.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/requirejs/js/dialog.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/requirejs/js/index.js" charset="UTF-8" />
+    <file url="file://$PROJECT_DIR$/requirejs/js/open.js" charset="UTF-8" />
+  </component>
+</project>
