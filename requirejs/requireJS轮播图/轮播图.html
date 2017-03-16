@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="css/index.css"/>
+    <style>
+        *{
+            margin: 0;
+            padding:0;
+        }
+        #bigContainer1{
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            background: #00ffff;
+            top:0;
+        }
+        #bigContainer2{
+            position: absolute;
+            width: 600px;
+            height: 400px;
+            background: #ffcdeb;
+            top:500px;
+        }
+    </style>
+</head>
+<body>
+    <div id="bigContainer1"></div>
+    <div id="bigContainer2"></div>
+    <!--<div class="container">-->
+        <!--<div class="image">-->
+            <!--<img src="imgs/1.jpg" alt="" class="selected"/>-->
+            <!--<img src="imgs/2.jpg" alt=""/>-->
+            <!--<img src="imgs/3.jpg" alt=""/>-->
+            <!--<img src="imgs/4.jpg" alt=""/>-->
+        <!--</div>-->
+        <!--<ul class="info">-->
+            <!--<li class="selected">1</li>-->
+            <!--<li>2</li>-->
+            <!--<li>3</li>-->
+            <!--<li>4</li>-->
+        <!--</ul>-->
+        <!--<div class="arrows">-->
+            <!--<span class="next">&gt;</span>-->
+            <!--<span class="prev">&lt;</span>-->
+        <!--</div>-->
+    <!--</div>-->
+    <!--<script>-->
+        <!--var idx = 0;-->
+        <!--var iNow = 0;-->
+        <!--var oContainer = document.getElementsByClassName('container');-->
+        <!--var aLi = document.getElementsByTagName('li');-->
+        <!--var oInfo = document.getElementsByClassName('info');-->
+        <!--var oNext = document.getElementById('next');-->
+        <!--var oPrev = document.getElementsByClassName('prev');-->
+        <!--var aImg = document.getElementsByTagName('img');-->
+        <!--for(var i = 0 ; i < aLi.length; i++){-->
+            <!--aLi[i].index=i;-->
+            <!--aLi[i].onmouseover = function(){-->
+                <!--idx = this.index;-->
+                <!--changeImg(idx);-->
+            <!--}-->
+        <!--}-->
+
+        <!--function changeImg(idx){-->
+            <!--iNow = idx;-->
+            <!--for(var i = 0 ; i < aLi.length; i++){-->
+                <!--aImg[i].className ="";-->
+                <!--aLi[i].className = "";-->
+            <!--}-->
+            <!--aLi[idx].className="selected";-->
+            <!--aImg[idx].className ="selected";-->
+        <!--}-->
+        <!--oNext.onclick = function(){-->
+            <!--console.log(123);-->
+
+            <!--iNow ++;-->
+            <!--if(iNow==aLi.length){-->
+                <!--iNow=0;-->
+            <!--}-->
+            <!--changeImg(iNow);-->
+        <!--}-->
+        <!--oPrev.onclick = function(){-->
+            <!--console.log(123);-->
+            <!--iNow&#45;&#45;;-->
+            <!--changeImg(iNow);-->
+        <!--}-->
+
+    <!--</script>-->
+    <script src="js/require.js" data-main="js/index"></script>
+    
+</body>
+</html>
