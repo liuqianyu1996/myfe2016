@@ -1,0 +1,51 @@
+{
+  "result": {
+    "songsList": [
+      {
+        "name": "Richard Sanderson- Reality ",
+        "src":"http://ws.stream.qqmusic.qq.com/200280172.m4a?fromtag=46",
+        "musicImgSrc": "http://i.gtimg.cn/music/photo/mid_album_300/1/K/000ZavsD0dgo1K.jpg"
+      },
+      {
+        "name": "任素汐 - 我要你",
+        "src":"http://m2.music.126.net/WhBIiLKYNa84TF3p5xx2FQ==/3265549607332004.mp3",
+        "musicImgSrc": "http://omratag7g.bkt.clouddn.com/%E6%88%91%E8%A6%81%E4%BD%A0.jpg"
+      },
+      {
+        "name": "The Brothers Four - 500miles",
+        "src":"http://ws.stream.qqmusic.qq.com/200959235.m4a?fromtag=46",
+        "musicImgSrc": "http://p4.music.126.net/H0-upX8mYIrpTiNROWWQ7w==/918092209244651.jpg?param=130y130"
+      },
+      {
+        "name": "刘家昌/尤雅 - 在雨中",
+        "src":"http://ws.stream.qqmusic.qq.com/660803.m4a?fromtag=46",
+        "musicImgSrc": "http://p4.music.126.net/pilpztxUGAw0MVe9C2JxUw==/109951162867450318.jpg?param=200y200"
+      },
+      {
+        "name": "谢安琪 - 喜帖街",
+        "src":"http://ws.stream.qqmusic.qq.com/435779.m4a?fromtag=46",
+        "musicImgSrc": "http://p4.music.126.net/vfh0s1KOiF4fOMzTGl-jAg==/19019352137302869.jpg?param=200y200"
+      },
+      {
+        "name": "张学友 - 等你等到我心痛",
+        "src": "http://ws.stream.qqmusic.qq.com/106666466.m4a?fromtag=46",
+        "musicImgSrc": "http://i.gtimg.cn/music/photo/mid_album_300/c/4/003UzYQV2CrUc4.jpg"
+      },
+      {
+        "name": "LEE HI - 冰箱",
+        "src": "http://ws.stream.qqmusic.qq.com/106868948.m4a?fromtag=46",
+        "musicImgSrc": "http://p3.music.126.net/j_8mi5EfgbQ4eTlcZIhIlA==/109951162864569962.jpg?param=200y200"
+      },
+      {
+        "name": "七月上",
+        "src": "http://ws.stream.qqmusic.qq.com/104780794.m4a?fromtag=46",
+        "musicImgSrc": "http://i.gtimg.cn/music/photo/mid_album_300/M/g/001ZaCQY2OxVMg.jpg"
+      },
+      {
+        "name": "Million Reasons - lady Gaga",
+        "src": "http://ws.stream.qqmusic.qq.com/108781036.m4a?fromtag=46",
+        "musicImgSrc": "http://i.gtimg.cn/music/photo/mid_album_300/4/n/000uSs3W1UP24n.jpg"
+      }
+    ]
+  }
+}

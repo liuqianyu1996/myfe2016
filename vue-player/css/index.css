@@ -1,0 +1,240 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+ul{
+    list-style: none;
+}
+body,html,#app{
+     height:100%;
+    font-size: 30px;
+ }
+#app{
+    height:100%;
+    position:relative;
+}
+
+#addMusic{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    z-index: 999;
+    background: rgba(0,0,0,0.7);
+    color:#fff;
+    font-size: 45px;
+    text-align: center;
+    display: none;
+    transition: 2s all ease;
+}
+#addMusic.addMusicshow{
+    display: block;
+}
+#addMusic div{
+    width: 100%;
+    height: 500px;
+    margin-top: 250px;
+}
+#addMusic span{
+    opacity: 0;
+    background: #000;
+    position: absolute;
+    right:0;
+    top:60px;
+    transition: 2s all ease;
+}
+#addMusic input{
+    margin: 30px;
+    width: 500px;
+    height: 50px;
+    font-size: 40px;
+}
+#addMusic button{
+    margin: 10px;
+    width: 170px;
+    height: 80px;
+    font-size: 35px;
+    border-radius: 15px;
+    background: #fff;
+}
+#musicList{
+    width: 0;
+    background: rgba(0,0,0,0.6);
+    position: absolute;
+    right:0;
+    color:#fff;
+    z-index: 9;
+    font-size: 43px;
+    margin: 0;
+    opacity: 0;
+    transition: 0.4s all ease;
+
+
+}
+#musicList.musicListshow{
+    width: 70%;
+    opacity: 1;
+
+}
+#musicList li{
+    width: 100%;
+    border-bottom: 1px solid #fff;
+    padding: 20px;
+    line-height: 80px;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+#musicList img{
+    width: 45px;
+    height: 45px;
+    margin-top: 40px;
+    margin-left: 10px;
+}
+#nav,#footer{
+    width: 100%;
+    height: 100px;
+    background: #a81e13;
+    position: fixed;
+}
+#nav{
+    height: 10%;
+    top:0;
+    color:#fff;
+    text-align: center;
+}
+#footer{
+    height: 10%;
+    bottom:0;
+    font-size: 60px;
+    text-align: center;
+    display: table;
+}
+#nav span{
+    width: 50px;
+    height: 50px;
+    font-size: 50px;
+    margin-top:3%;
+}
+#nav h2{
+    width: 70%;
+    height: 100%;
+    margin: 3% auto;
+    display: inline-block;
+}
+#footer span{
+    display: table-cell;
+    vertical-align: middle;
+    color:#fff;
+
+}
+#myAudio{
+    width: 100%;
+    height: 20px;
+    position: fixed;
+    bottom:136px;
+    z-index: 9;
+}
+#playImg{
+    width: 100px;
+    height:100px;
+    margin-top: 20px;
+    display: inline-block;
+}
+#backward span{
+    float:left;
+    vertical-align: middle;
+    display: inline-block;
+}
+#forward span{
+    float: right;
+    vertical-align: middle;
+    display: inline-block;
+
+}
+#add{
+    margin-left: 20px;
+    float: left;
+}
+#list{
+    margin-right: 20px;
+    float:right;
+}
+#player{
+    width: 100%;
+    height: 80%;
+    position: fixed;
+    top:10%;
+    bottom: 10%;
+    overflow: auto;
+}
+#player div{
+    width: 100%;
+    height: 100%;
+
+}
+#bigImg{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-filter: blur(50px);
+    -moz-filter: blur(50px);
+    -o-filter: blur(50px);
+    -ms-filter: blur(50px);
+    filter: blur(50px);
+    position: fixed;
+}
+#smallImg{
+    width: 500px;
+    height: 500px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin-top: -250px;
+    margin-left: -250px;
+    border-radius: 50%;
+    position: fixed;
+}
+div#skin{
+    width: 200px;
+    height: 500px;
+    position: absolute;
+    bottom:100px;
+    right:10px;
+    text-align: center;
+    position: fixed;
+}
+
+#skin img{
+    width: 110px;
+    height: 110px;
+    margin-top: 10px;
+}
+#skin li{
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 10px auto;
+
+}
+#skin ul{
+    opacity: 0;
+    transition: 1s ease all;
+}
+#skin ul.skinSelectShow{
+    opacity: 1;
+}
+.rotate{
+    animation: 15s Imgrotate linear infinite forwards;
+}
+.pause {
+    -webkit-animation-play-state: paused;
+    -moz-animation-play-state: paused;
+}
+@keyframes Imgrotate {
+    form{
+        /*transform: rotateZ(0deg);*/
+    }to{
+          transform: rotateZ(360deg);
+         }
+}

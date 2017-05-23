@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>my-player  liuqianyu</title>
+    <link rel="stylesheet" type="text/css" href="fonts/font-awesome/css/font-awesome.css">
+    <link rel="stylesheet" href="css/index.css">
+</head>
+<body>
+<div id="app">
+        <div id="nav" :style={backgroundColor:currentColor}>
+            <span id="add" @click="addMusic"><i class="fa fa-plus"></i></span>
+             <h2>{{isPlay.name}}</h2>
+            <span id="list" @click="listShow"><i class="fa fa-bars"></i></span>
+        </div>
+        <div id="addMusic" :class={addMusicshow:isAddMusicshow}>
+            <span class="showMsg">{{showMsg}}</span>
+            <div>
+                <h3>告诉我你喜欢的歌</h3>
+                <form action="">
+                    <label for="">歌曲名称<input type="text" v-model="newSong.name" placeholder="请输入歌曲名字(必填)"></label><br>
+                    <label for="">歌曲连接<input type="text" v-model="newSong.songUrl" placeholder="请输入歌曲连接(必填)"></label><br>
+                    <label for="">图片连接<input type="text" v-model="newSong.imgUrl" placeholder="请输入图片连接(必填)"></label>
+                </form>
+                <button id="addSong" @click="addNewSong">添加歌曲</button>
+                <button id="cancle" @click="cancle">取消添加</button>
+            </div>
+        </div>
+        <div  id="player">
+            <ul id="musicList" :class={musicListshow:ismusicListShow}>
+                <li v-for="(song,index) in songsList" @click="changeSong(index)">{{index+1}}.{{song.name}} <span @click="del(index)"><img src="imgs/icons/music_del.png" alt=""></span> </li>
+            </ul>
+            <my-content :parent-isplay="isPlay"></my-content>
+            <div id="skin">
+                <ul :class={skinSelectShow:isskinSelectShow}>
+                    <li v-for="(color,index) in skinColor" @click="selectSkin(index)" :style={backgroundColor:color}></li>
+                </ul>
+                <img :src="this.skinSrc" @click="ifskinSelectShow"  alt="">
+            </div>
+        </div>
+        <div id="footer" :style={backgroundColor:currentColor}>
+            <span id="backward" @click="backwardPlay"><i class="fa fa-backward"></i> </span>
+            <span id="play" @click="playPause">
+                <img src="imgs/icons/music_play_button.png" alt="" id="playImg">
+            </span>
+            <span id="forward" @click="forwardPlay"><i class="fa fa-forward"></i></span>
+        </div>
+    </div>
+</div>
+<script src="js/jquery-1.12.4.js"></script>
+<script src="vue.min.js"></script>
+<script src="node_modules/axios2/dist/axios.js">
+</script>
+
+<!--<script src="js/component.js"></script>-->
+<script>
+
+    var vm = new Vue({
+        el: "#app",
+        data: {
+            songsList:[],
+            isPlay:{},
+            newSong:{
+                name:"",
+                 songUrl:"",
+                imgUrl:"",
+            },
+            showMsg:"",
+            ismusicListShow:false,
+            isAddMusicshow:false,
+            skinSrc:"imgs/icons/skin1.png",
+            skinColor:["#CD3700","#3D3D3D","#218868","black"],
+            currentColor:"",
+            isskinSelectShow:false
+        },
+        components: {
+            'my-content': {
+                template: `<div>
+                                <img :src="parentIsplay.musicImgSrc" id="bigImg"  alt="">
+                                <img :src="parentIsplay.musicImgSrc" id="smallImg" class="rotate" alt="">
+                                <audio :src="parentIsplay.src" autoplay id="myAudio" controls="controls"/></audio>
+                          </div>` ,
+                props:['parentIsplay']
+            }
+        },
+        methods:{
+            addMusic:function () {
+               this.isAddMusicshow = true;
+            },
+            changeShowMsg : function (showMsg) {
+                var oShowMsg = document.querySelector('.showMsg')
+                oShowMsg.style.opacity="1";
+                this.showMsg=showMsg;
+                setTimeout(function () {
+                    oShowMsg.style.opacity="0";
+                },2000)
+            },
+            addNewSong:function () {
+                if (!this.newSong.name || !this.newSong.songUrl) {
+                 this.changeShowMsg("请填写完整信息哦😜");
+                    return;
+                }else if (!(/^(https?).*(mp3|ogg|m4a)$/i.test(this.newSong.songUrl))) {
+                    this.changeShowMsg('你的音乐链接可能无效哦,请重新输入');
+                    return;
+                }else{
+                    this.songsList.push(this.newSong);
+                    this.isAddMusicshow = false;
+                }
+            },
+            cancle:function() {
+                this.isAddMusicshow = false;
+            },
+            del:function (index) {
+                if(confirm("确定删除？")){
+                    this.songsList.splice(index,1);
+                    if(this.songsList.length==0){
+                        this.isPlay.name="已经没有歌啦 💔";
+                        this.isPlay.src="";
+                        this.isPlay.musicImgSrc="imgs/musicImgSrc/pleace.png";
+                    }
+                }
+                this.ismusicListShow = true;
+            },
+            listShow:function () {
+                this.ismusicListShow=!this.ismusicListShow;
+            },
+            changeSong:function (index) {
+                this.isPlay = this.songsList[index];
+                this.ismusicListShow=false;
+            },
+            playPause:function () {
+                var oMyAudio = document.querySelector('#myAudio');
+                var oImg = document.querySelector('#smallImg');
+                var oPlayImg = document.querySelector('#playImg');
+                if(oMyAudio.paused){
+                    oMyAudio.play();
+                    if(oImg.className.indexOf("pause")!=-1){
+                        oImg.className = oImg.className.replace( new RegExp( "(\\s|^)" +"pause" + "(\\s|$)" )," " )
+                    };
+                    oPlayImg.src="imgs/icons/music_play_button.png";
+                }else{
+                    oMyAudio.pause();
+                    var oImgClass =  oImg.className;
+                    if(oImgClass.indexOf("pause")==-1){
+                        oImg.className +=" pause";
+                    };
+                    oPlayImg.src="imgs/icons/music_pause_button.png";
+                }
+            } ,
+            forwardPlay:function () {
+                var index = this.songsList.indexOf(this.isPlay);
+                index++;
+                if(index == this.songsList.length){
+                    index = 0;
+                }
+                this.isPlay = this.songsList[index];
+            },
+            backwardPlay:function () {
+                var index = this.songsList.indexOf(this.isPlay);
+                index--;
+                if(index ==-1){
+                    index = this.songsList.length-1;
+                }
+                this.isPlay = this.songsList[index];
+            },
+            selectSkin:function (index) {
+                this.currentColor=this.skinColor[index];
+                console.log(this.currentColor);
+                this.setcookie("currentColor",this.currentColor,7);
+                this.isskinSelectShow = false;
+            },
+            ifskinSelectShow:function () {
+                this.isskinSelectShow = !this.isskinSelectShow;
+            },
+            setcookie:function (key,value,day) {
+                var str = key + "=" + value+";";
+                if(day){
+                    var date = new Date();
+                    date.setDate(date.getDate()+day);
+                    str += "expires=" + date;
+                }
+                document.cookie=str;
+            },
+            getcookie:function (key) {
+                var str=document.cookie;
+                var arr = str.split('; ');
+                for(var i =0 ;i<arr.length; i++){
+                    var arr1 = arr[i].split('=');
+                    if(arr1[0]==key){
+                        return arr1[1];
+                    }
+                }
+            }
+        },
+        created:function() {
+            var _this = this;
+            this.currentColor = this.getcookie("currentColor")
+            axios.get('js/songs.json').then(function (res) {
+                _this.songsList = res.data.result.songsList;
+                _this.isPlay = _this.songsList[0];
+            });
+        }
+    })
+</script>
+
+
+</body>
+</html>
